@@ -1,0 +1,381 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 14.2
+-- Dumped by pg_dump version 14.1
+
+-- Started on 2022-04-27 16:32:39 -05
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- TOC entry 3609 (class 1262 OID 33032)
+-- Name: DIG; Type: DATABASE; Schema: -; Owner: juanse_sqlcourse
+--
+
+CREATE DATABASE "DIG" WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE = 'C';
+
+
+ALTER DATABASE "DIG" OWNER TO juanse_sqlcourse;
+
+\connect "DIG"
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 209 (class 1259 OID 33038)
+-- Name: consulta_establecimiento; Type: TABLE; Schema: public; Owner: juanse_sqlcourse
+--
+
+CREATE TABLE public.consulta_establecimiento (
+    idconsultaestablecimiento integer NOT NULL,
+    idusuario integer NOT NULL,
+    idestablecimiento integer NOT NULL
+);
+
+
+ALTER TABLE public.consulta_establecimiento OWNER TO juanse_sqlcourse;
+
+--
+-- TOC entry 210 (class 1259 OID 33043)
+-- Name: establecimiento; Type: TABLE; Schema: public; Owner: juanse_sqlcourse
+--
+
+CREATE TABLE public.establecimiento (
+    idestablecimiento integer NOT NULL,
+    nombreestablecimiento character varying(100) NOT NULL,
+    horario character varying(250) NOT NULL,
+    ciudad character varying(100) NOT NULL,
+    tipo character varying(45) NOT NULL,
+    direccion character varying(100) NOT NULL,
+    capacidadpersonas integer NOT NULL,
+    calidadinternet character varying(45) NOT NULL,
+    calificacion numeric(2,1),
+    descripcionestablecimiento character varying(250),
+    telefono character varying(20)
+);
+
+
+ALTER TABLE public.establecimiento OWNER TO juanse_sqlcourse;
+
+--
+-- TOC entry 211 (class 1259 OID 33050)
+-- Name: favoritos; Type: TABLE; Schema: public; Owner: juanse_sqlcourse
+--
+
+CREATE TABLE public.favoritos (
+    idusuario integer NOT NULL,
+    idestablecimiento integer NOT NULL
+);
+
+
+ALTER TABLE public.favoritos OWNER TO juanse_sqlcourse;
+
+--
+-- TOC entry 212 (class 1259 OID 33053)
+-- Name: reporte; Type: TABLE; Schema: public; Owner: juanse_sqlcourse
+--
+
+CREATE TABLE public.reporte (
+    idreporte integer NOT NULL,
+    idusuario integer NOT NULL,
+    idestablecimiento integer NOT NULL,
+    fechareporte integer NOT NULL,
+    ocupacion integer NOT NULL,
+    calidadinternet character varying(45) NOT NULL,
+    numerocalificaciones integer NOT NULL,
+    calificacionestablecimiento numeric(2,1) NOT NULL,
+    calificacionreporte numeric(2,1) NOT NULL,
+    comentarios character varying(280)
+);
+
+
+ALTER TABLE public.reporte OWNER TO juanse_sqlcourse;
+
+--
+-- TOC entry 213 (class 1259 OID 33058)
+-- Name: usuario; Type: TABLE; Schema: public; Owner: juanse_sqlcourse
+--
+
+CREATE TABLE public.usuario (
+    idusuario integer NOT NULL,
+    nombreusuario character varying(100) NOT NULL,
+    puntajeusuario numeric(2,1),
+    correo character varying(100) NOT NULL,
+    ciudad character varying(100) NOT NULL,
+    telefono character varying(20)
+);
+
+
+ALTER TABLE public.usuario OWNER TO juanse_sqlcourse;
+
+--
+-- TOC entry 3599 (class 0 OID 33038)
+-- Dependencies: 209
+-- Data for Name: consulta_establecimiento; Type: TABLE DATA; Schema: public; Owner: juanse_sqlcourse
+--
+
+COPY public.consulta_establecimiento (idconsultaestablecimiento, idusuario, idestablecimiento) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3600 (class 0 OID 33043)
+-- Dependencies: 210
+-- Data for Name: establecimiento; Type: TABLE DATA; Schema: public; Owner: juanse_sqlcourse
+--
+
+COPY public.establecimiento (idestablecimiento, nombreestablecimiento, horario, ciudad, tipo, direccion, capacidadpersonas, calidadinternet, calificacion, descripcionestablecimiento, telefono) FROM stdin;
+1	Altenwerth-Morissette	11:14	Qīrah	Coworking	88 Alpine Crossing	133	3.7	2.6	orci eget orci vehicula condimentum curabitur in libero ut massa volutpat convallis morbi odio odio elementum eu interdum eu tincidunt in	157-276-6978
+2	Gerhold-Reynolds	7:02	Gracias	Coworking	6 Haas Trail	138	1.7	1.2	vestibulum aliquet ultrices erat tortor sollicitudin mi sit amet lobortis sapien sapien non mi integer	476-581-1698
+3	Medhurst, Gottlieb and Lang	6:00	Petaling Jaya	Coworking	028 Schurz Avenue	144	2.5	1.8	mi sit amet lobortis sapien sapien non mi integer ac neque duis bibendum morbi non quam nec dui luctus rutrum nulla tellus in sagittis dui vel nisl duis ac nibh	811-455-4019
+4	Bailey Group	8:11	Bailan	Café	4 Sunbrook Drive	110	2.5	2.7	donec vitae nisi nam ultrices libero non mattis pulvinar nulla pede ullamcorper augue a suscipit nulla elit	910-342-8847
+5	Raynor, Considine and Goyette	6:27	Ignalina	Coworking	44786 Annamark Pass	237	2.1	3.2	in faucibus orci luctus et ultrices posuere cubilia curae donec pharetra magna vestibulum	980-593-7200
+6	Ortiz, Kuhic and Jaskolski	7:16	Ulan Hua	Café	97487 Trailsway Avenue	47	3.7	3.8	sapien arcu sed augue aliquam erat volutpat in congue etiam justo etiam pretium iaculis justo in hac habitasse platea dictumst etiam faucibus cursus urna ut tellus nulla ut erat	694-538-5559
+7	Murray, Tillman and Bergstrom	9:35	Bol’shoy Kamen’	Café	83464 Daystar Circle	218	4.5	2.7	orci pede venenatis non sodales sed tincidunt eu felis fusce posuere felis sed lacus morbi sem mauris laoreet ut rhoncus aliquet pulvinar sed nisl	398-145-4673
+8	Nicolas-Heathcote	7:51	Belajen	Café	86 Manitowish Trail	88	1.6	2.7	ipsum praesent blandit lacinia erat vestibulum sed magna at nunc commodo placerat	898-139-2575
+9	Dicki-O'Kon	10:13	Jugantang	Coworking	265 Glacier Hill Drive	56	1.8	1.1	nascetur ridiculus mus etiam vel augue vestibulum rutrum rutrum neque aenean auctor gravida sem praesent id massa id nisl venenatis lacinia aenean sit	731-986-2556
+10	Howell LLC	10:37	Krasica	Café	833 Milwaukee Park	120	3.0	1.9	porttitor lacus at turpis donec posuere metus vitae ipsum aliquam non mauris	212-137-2623
+11	Hansen, Mayer and Denesik	9:15	Marsada	Café	846 Kennedy Way	76	1.7	2.3	mus etiam vel augue vestibulum rutrum rutrum neque aenean auctor gravida sem praesent id massa id nisl	777-199-6066
+12	Botsford Group	7:17	Miguel Hidalgo	Café	746 Gateway Road	25	3.7	3.0	sem praesent id massa id nisl venenatis lacinia aenean sit amet justo morbi ut odio cras mi pede malesuada in imperdiet et	738-418-2160
+13	Stehr and Sons	10:30	Talca	Coworking	031 Evergreen Lane	91	4.1	1.1	\N	\N
+14	Bergnaum Inc	11:06	Bueng Kum	Café	7021 Hudson Park	90	2.6	4.9	proin leo odio porttitor id consequat in consequat ut nulla sed accumsan felis ut at dolor quis odio consequat varius integer ac leo pellentesque ultrices	565-795-1334
+15	Conn Group	11:16	Tours	Café	33 Fair Oaks Junction	12	3.3	3.4	ipsum integer a nibh in quis justo maecenas rhoncus aliquam lacus morbi quis tortor id nulla	191-194-0095
+16	Wintheiser LLC	6:12	Maodao	Coworking	97 Prairie Rose Crossing	294	4.3	3.8	lorem id ligula suspendisse ornare consequat lectus in est risus auctor sed tristique in tempus	622-908-8654
+17	Kuphal, Metz and Beatty	9:23	Victoria	Café	40 Manufacturers Street	231	4.0	2.6	venenatis tristique fusce congue diam id ornare imperdiet sapien urna pretium nisl ut volutpat sapien arcu sed augue aliquam erat volutpat in congue	286-203-0829
+18	Jaskolski, Lockman and Moen	9:31	Fada N'gourma	Café	9 Manitowish Point	62	4.4	3.7	ac neque duis bibendum morbi non quam nec dui luctus rutrum nulla tellus in sagittis dui vel nisl duis ac nibh fusce lacus purus aliquet	630-766-0095
+19	Kovacek-Huels	10:08	Pejek	Coworking	6852 American Ash Street	244	4.4	3.7	erat quisque erat eros viverra eget congue eget semper rutrum nulla nunc purus phasellus in felis donec semper sapien a libero nam dui proin leo odio porttitor id consequat in	571-182-0799
+20	Watsica Group	11:32	Jihuluntu Sumu	Coworking	8458 Larry Park	286	2.3	2.5	purus phasellus in felis donec semper sapien a libero nam dui proin leo odio porttitor id consequat in consequat ut nulla sed accumsan felis ut at dolor	560-199-5707
+21	Gottlieb and Sons	7:33	Ранковце	Café	15699 Annamark Circle	141	1.0	2.1	leo pellentesque ultrices mattis odio donec vitae nisi nam ultrices libero non mattis pulvinar nulla pede ullamcorper augue a suscipit nulla	200-413-8581
+22	VonRueden, Cole and Stark	6:01	Karsin	Café	7 New Castle Alley	50	4.4	1.1	\N	\N
+23	Smitham, Friesen and Medhurst	6:42	Hadakewa	Café	379 Thompson Street	41	2.8	3.0	suspendisse ornare consequat lectus in est risus auctor sed tristique in tempus	984-543-9922
+24	Bernhard, Erdman and Rice	7:51	Xinji	Café	741 Schlimgen Way	180	2.3	3.2	tortor quis turpis sed ante vivamus tortor duis mattis egestas metus aenean fermentum donec ut mauris eget massa tempor convallis nulla neque libero convallis eget eleifend luctus ultricies	526-695-5955
+25	Bogan LLC	7:26	Tentúgal	Coworking	8005 Bartelt Pass	219	2.7	1.2	eget rutrum at lorem integer tincidunt ante vel ipsum praesent blandit lacinia erat vestibulum sed magna at nunc commodo placerat praesent blandit nam nulla integer pede justo lacinia eget tincidunt	883-709-3219
+26	Hoppe, Wilderman and Will	7:23	Dimayon	Café	268 Eagan Court	164	3.2	3.8	tincidunt nulla mollis molestie lorem quisque ut erat curabitur gravida nisi at nibh in hac habitasse platea dictumst aliquam augue	540-258-7101
+27	Zieme-Pacocha	8:07	Santa Rosa	Coworking	16 Oak Valley Avenue	33	3.9	4.0	accumsan tortor quis turpis sed ante vivamus tortor duis mattis egestas metus aenean fermentum donec ut mauris eget massa tempor convallis nulla neque	179-693-4760
+28	Mayert Group	11:43	Tsiatsan	Coworking	357 Carberry Center	235	1.6	4.8	consequat in consequat ut nulla sed accumsan felis ut at	912-345-3456
+29	Bartoletti-Oberbrunner	9:56	Salamanca	Café	28500 Summerview Center	20	1.3	2.8	phasellus sit amet erat nulla tempus vivamus in felis eu sapien cursus	844-658-3796
+30	Braun and Sons	9:44	Krumvíř	Coworking	60 Algoma Center	138	4.9	2.6	mauris non ligula pellentesque ultrices phasellus id sapien in sapien iaculis	839-693-6282
+31	Barton Inc	6:39	Shiban	Café	70 Myrtle Junction	120	4.2	4.6	proin interdum mauris non ligula pellentesque ultrices phasellus id sapien in sapien iaculis congue vivamus metus arcu adipiscing molestie hendrerit at vulputate vitae nisl aenean lectus pellentesque	830-146-8493
+32	Hickle, Haag and Hickle	8:52	Sinuknipan	Coworking	96515 Prairieview Lane	47	3.5	1.5	aliquet maecenas leo odio condimentum id luctus nec molestie sed justo pellentesque viverra pede ac diam cras pellentesque volutpat dui maecenas tristique est et tempus semper est quam pharetra magna	196-696-2880
+33	Balistreri-Trantow	7:58	Fovissste	Café	73 Pearson Plaza	198	3.2	3.4	\N	\N
+34	Jacobi-Conroy	9:23	Feričanci	Café	58789 Briar Crest Junction	150	4.9	2.3	quis augue luctus tincidunt nulla mollis molestie lorem quisque ut erat curabitur gravida nisi at nibh in hac habitasse platea dictumst aliquam augue quam	793-983-9318
+35	Veum-Altenwerth	11:34	Estombar	Coworking	1424 Menomonie Avenue	63	5.0	2.3	fusce congue diam id ornare imperdiet sapien urna pretium nisl ut volutpat sapien arcu sed augue	847-105-2595
+36	Gleichner LLC	9:24	Nagornyy	Coworking	2 Stuart Hill	106	2.7	4.4	porttitor lorem id ligula suspendisse ornare consequat lectus in est risus auctor sed tristique in tempus sit amet sem fusce consequat nulla nisl nunc	697-440-0898
+37	Ebert, Armstrong and Zulauf	11:33	Encantado	Café	3 Forest Dale Center	108	4.2	2.9	nisi at nibh in hac habitasse platea dictumst aliquam augue quam sollicitudin vitae consectetuer eget rutrum at lorem integer tincidunt ante vel ipsum praesent blandit lacinia	217-952-6529
+38	Glover-Cole	10:13	Tandayag	Café	05577 Lillian Parkway	30	2.7	4.3	risus dapibus augue vel accumsan tellus nisi eu orci mauris lacinia sapien quis libero nullam sit amet turpis elementum ligula vehicula consequat morbi a ipsum integer a nibh in quis	823-627-2170
+39	Jaskolski, Rath and Rogahn	8:17	Veranópolis	Coworking	543 Hagan Center	75	3.9	2.8	fringilla rhoncus mauris enim leo rhoncus sed vestibulum sit amet cursus id turpis integer aliquet massa id lobortis convallis tortor risus dapibus	933-294-9177
+40	Rempel-Armstrong	9:46	Horad Pinsk	Coworking	2 Mccormick Place	208	1.7	3.6	\N	\N
+41	Schmeler and Sons	6:38	Courtaboeuf	Café	5 Schiller Circle	142	3.1	1.4	\N	\N
+42	Stoltenberg, Runolfsson and Koch	7:57	Myshkin	Café	06876 Prentice Road	173	4.5	3.7	pulvinar lobortis est phasellus sit amet erat nulla tempus vivamus in felis eu sapien cursus vestibulum proin eu mi nulla ac enim in tempor turpis nec euismod scelerisque quam	266-852-3067
+43	Monahan, Berge and Sauer	9:35	Piripiri	Café	299 Morning Road	246	4.3	1.4	odio odio elementum eu interdum eu tincidunt in leo maecenas pulvinar lobortis est phasellus sit amet erat nulla tempus vivamus in felis eu sapien	781-393-3760
+44	Moore Inc	6:55	Aminga	Café	0841 Bluejay Trail	54	3.5	2.6	erat quisque erat eros viverra eget congue eget semper rutrum nulla nunc purus phasellus in felis donec semper sapien a libero nam dui proin leo	680-219-9941
+45	Boehm LLC	11:22	Murmashi	Café	918 Kensington Plaza	221	1.7	2.5	cras in purus eu magna vulputate luctus cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus vivamus vestibulum sagittis sapien cum sociis natoque penatibus et magnis	259-948-4854
+46	Strosin-Schoen	11:01	Chakou	Coworking	7277 Columbus Park	226	4.2	1.9	sapien in sapien iaculis congue vivamus metus arcu adipiscing molestie hendrerit at vulputate vitae nisl aenean	170-589-0858
+47	O'Connell-Wolf	10:18	Shirone	Coworking	199 Fordem Park	177	4.0	4.0	congue elementum in hac habitasse platea dictumst morbi vestibulum velit id pretium iaculis diam erat fermentum justo nec condimentum neque	913-310-7225
+48	King LLC	9:32	Águas	Café	687 Elmside Pass	87	2.3	3.9	\N	\N
+49	Walsh LLC	9:02	Markaz Mudhaykirah	Café	138 Southridge Crossing	150	3.1	2.1	quis turpis sed ante vivamus tortor duis mattis egestas metus aenean fermentum donec ut mauris eget massa tempor convallis nulla neque libero convallis eget eleifend luctus ultricies	633-723-5864
+50	Lang, Hane and Nicolas	9:00	Lindian	Coworking	5046 Spohn Street	264	3.2	1.9	\N	\N
+\.
+
+
+--
+-- TOC entry 3601 (class 0 OID 33050)
+-- Dependencies: 211
+-- Data for Name: favoritos; Type: TABLE DATA; Schema: public; Owner: juanse_sqlcourse
+--
+
+COPY public.favoritos (idusuario, idestablecimiento) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3602 (class 0 OID 33053)
+-- Dependencies: 212
+-- Data for Name: reporte; Type: TABLE DATA; Schema: public; Owner: juanse_sqlcourse
+--
+
+COPY public.reporte (idreporte, idusuario, idestablecimiento, fechareporte, ocupacion, calidadinternet, numerocalificaciones, calificacionestablecimiento, calificacionreporte, comentarios) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3603 (class 0 OID 33058)
+-- Dependencies: 213
+-- Data for Name: usuario; Type: TABLE DATA; Schema: public; Owner: juanse_sqlcourse
+--
+
+COPY public.usuario (idusuario, nombreusuario, puntajeusuario, correo, ciudad, telefono) FROM stdin;
+1	Cori Chadwell	4.0	cchadwell0@about.me	Hāsilpur	4325770165
+2	Grantham Masterton	1.6	gmasterton1@yelp.com	Babakankalong	3595383746
+3	Devlen Bardill	4.6	dbardill2@utexas.edu	Half Way Tree	9805448475
+4	Darius Vernham	4.7	dvernham3@sina.com.cn	Ayamaru	4861727115
+5	Barclay Lecky	3.0	blecky4@a8.net	Panagyurishte	9963051389
+6	Ajay Gussin	3.0	agussin5@google.co.jp	Antony	1525101776
+7	Tresa Widdop	0.1	twiddop6@addtoany.com	Jiangnan	8018652685
+8	Allen Spawton	2.3	aspawton7@buzzfeed.com	Na Yong	1347242136
+9	Marley Guiducci	2.7	mguiducci8@wisc.edu	Sala	8778676467
+10	Wendall Mashro	3.3	wmashro9@squarespace.com	Kaem	2568129442
+11	Darice Chettle	4.8	dchettlea@xrea.com	Kapakabisa	6681405098
+12	Cindee Clulee	0.6	ccluleeb@studiopress.com	Koszyce Wielkie	9584789659
+13	Sashenka Skeats	1.2	sskeatsc@howstuffworks.com	La Virgen	4853970227
+14	Melody Kelbie	0.4	mkelbied@cyberchimps.com	Centenario	5794504844
+15	Park Cheverell	1.2	pcheverelle@shareasale.com	Satuba	5075046383
+16	Carita Esch	4.8	ceschf@boston.com	Vecumnieki	1867313389
+17	Constanta Vaskov	1.0	cvaskovg@is.gd	Az Zuwaytīnah	3385898705
+18	Agnesse Bosomworth	4.1	abosomworthh@histats.com	Kiyawa	2062960022
+19	Kalli McHaffy	0.4	kmchaffyi@cyberchimps.com	Sobradinho	8918596464
+20	Carlie Winsor	4.0	cwinsorj@netlog.com	Kyzyl	1805330521
+21	Kitty Rourke	4.9	krourkek@exblog.jp	Monticello	7634997125
+22	Carolyne Bendall	4.2	cbendalll@altervista.org	Tianqian	3282027922
+23	Dud Lathbury	3.8	dlathburym@cornell.edu	Bồng Sơn	2446257095
+24	Horton Chander	3.6	hchandern@yale.edu	Baranowo	3133839475
+25	Jennee Kinnin	1.4	jkinnino@moonfruit.com	Le Kremlin-Bicêtre	5179279164
+26	Maryanne Baldree	2.9	mbaldreep@gov.uk	Swindon	9004696788
+27	Glenine Vinten	4.5	gvintenq@umn.edu	Lebedinovka	5909676387
+28	Joscelin Brydie	2.3	jbrydier@skype.com	Bous	4821319469
+29	Dre Van der Velden	2.4	dvans@google.pl	Penambangan	6914808361
+30	Ailsun Ewbanks	1.2	aewbankst@uol.com.br	Klippan	2615050856
+31	Ernestine Micklem	4.4	emicklemu@psu.edu	Rumburk	6282348824
+32	Hakeem Arnal	2.9	harnalv@google.co.jp	Cilegi	4345395616
+33	Hyman Crowden	3.9	hcrowdenw@naver.com	Liulin	5038714945
+34	Sidoney Baptiste	2.5	sbaptistex@shutterfly.com	Tataouine	3261923003
+35	Ronica Fiddeman	3.3	rfiddemany@histats.com	Vorontsovka	7322910593
+36	Elwin Egalton	2.2	eegaltonz@posterous.com	Kungsbacka	6454853053
+37	Dani Keningley	0.2	dkeningley10@prlog.org	Baise City	2635740514
+38	Audrye Ogg	1.4	aogg11@slideshare.net	Lanyang	3735325053
+39	Pryce Jozwik	0.0	pjozwik12@unicef.org	Van Nuys	2138394824
+40	Sigfrid Laise	1.0	slaise13@ezinearticles.com	Bago	2089889586
+41	Dalila Meeks	4.7	dmeeks14@storify.com	Eksjö	3101605667
+42	Ailey Tellesson	4.8	atellesson15@cocolog-nifty.com	Banes	9692565333
+43	Barbette Cake	0.5	bcake16@slashdot.org	Sosnovoborsk	3193593006
+44	Shirline Plunket	3.1	splunket17@huffingtonpost.com	Santa Rita	7715730711
+45	Olivette Hackleton	1.3	ohackleton18@yahoo.co.jp	Donglu	6707616343
+46	Abdel McCamish	4.7	amccamish19@ftc.gov	Chochkan	9202799441
+47	Elva Hurche	0.8	ehurche1a@pcworld.com	Tawau	3026648977
+48	Darill Skipp	0.4	dskipp1b@bbc.co.uk	Jintang	1646438073
+49	Brigitta Vanderson	1.2	bvanderson1c@spiegel.de	Fratar	3889246070
+50	Celene Andriessen	0.6	candriessen1d@eventbrite.com	Jiesheng	5345444568
+51	Juan Sebastián Montoya Combita	4.9	jsmontoyaco@unal.edu.co	jsmonco	604 4567890
+\.
+
+
+--
+-- TOC entry 3447 (class 2606 OID 33042)
+-- Name: consulta_establecimiento consulta_establecimiento_pk; Type: CONSTRAINT; Schema: public; Owner: juanse_sqlcourse
+--
+
+ALTER TABLE ONLY public.consulta_establecimiento
+    ADD CONSTRAINT consulta_establecimiento_pk PRIMARY KEY (idconsultaestablecimiento);
+
+
+--
+-- TOC entry 3449 (class 2606 OID 33049)
+-- Name: establecimiento establecimiento_pk; Type: CONSTRAINT; Schema: public; Owner: juanse_sqlcourse
+--
+
+ALTER TABLE ONLY public.establecimiento
+    ADD CONSTRAINT establecimiento_pk PRIMARY KEY (idestablecimiento);
+
+
+--
+-- TOC entry 3451 (class 2606 OID 33057)
+-- Name: reporte reporte_pk; Type: CONSTRAINT; Schema: public; Owner: juanse_sqlcourse
+--
+
+ALTER TABLE ONLY public.reporte
+    ADD CONSTRAINT reporte_pk PRIMARY KEY (idreporte);
+
+
+--
+-- TOC entry 3453 (class 2606 OID 33062)
+-- Name: usuario usuario_pk; Type: CONSTRAINT; Schema: public; Owner: juanse_sqlcourse
+--
+
+ALTER TABLE ONLY public.usuario
+    ADD CONSTRAINT usuario_pk PRIMARY KEY (idusuario);
+
+
+--
+-- TOC entry 3454 (class 2606 OID 33063)
+-- Name: consulta_establecimiento consulta_establecimiento_establecimiento; Type: FK CONSTRAINT; Schema: public; Owner: juanse_sqlcourse
+--
+
+ALTER TABLE ONLY public.consulta_establecimiento
+    ADD CONSTRAINT consulta_establecimiento_establecimiento FOREIGN KEY (idestablecimiento) REFERENCES public.establecimiento(idestablecimiento);
+
+
+--
+-- TOC entry 3455 (class 2606 OID 33068)
+-- Name: consulta_establecimiento consulta_establecimiento_usuario; Type: FK CONSTRAINT; Schema: public; Owner: juanse_sqlcourse
+--
+
+ALTER TABLE ONLY public.consulta_establecimiento
+    ADD CONSTRAINT consulta_establecimiento_usuario FOREIGN KEY (idusuario) REFERENCES public.usuario(idusuario);
+
+
+--
+-- TOC entry 3456 (class 2606 OID 33073)
+-- Name: favoritos favoritos_establecimiento; Type: FK CONSTRAINT; Schema: public; Owner: juanse_sqlcourse
+--
+
+ALTER TABLE ONLY public.favoritos
+    ADD CONSTRAINT favoritos_establecimiento FOREIGN KEY (idestablecimiento) REFERENCES public.establecimiento(idestablecimiento);
+
+
+--
+-- TOC entry 3457 (class 2606 OID 33078)
+-- Name: favoritos favoritos_usuario; Type: FK CONSTRAINT; Schema: public; Owner: juanse_sqlcourse
+--
+
+ALTER TABLE ONLY public.favoritos
+    ADD CONSTRAINT favoritos_usuario FOREIGN KEY (idusuario) REFERENCES public.usuario(idusuario);
+
+
+--
+-- TOC entry 3458 (class 2606 OID 33083)
+-- Name: reporte reporte_establecimiento; Type: FK CONSTRAINT; Schema: public; Owner: juanse_sqlcourse
+--
+
+ALTER TABLE ONLY public.reporte
+    ADD CONSTRAINT reporte_establecimiento FOREIGN KEY (idestablecimiento) REFERENCES public.establecimiento(idestablecimiento);
+
+
+--
+-- TOC entry 3459 (class 2606 OID 33088)
+-- Name: reporte reporte_usuario; Type: FK CONSTRAINT; Schema: public; Owner: juanse_sqlcourse
+--
+
+ALTER TABLE ONLY public.reporte
+    ADD CONSTRAINT reporte_usuario FOREIGN KEY (idusuario) REFERENCES public.usuario(idusuario);
+
+
+-- Completed on 2022-04-27 16:32:40 -05
+
+--
+-- PostgreSQL database dump complete
+--
+
