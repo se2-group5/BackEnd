@@ -16,7 +16,8 @@ pip install -r requirements.txt
 
 <aside>
 For mac if you can’t install or the above command doesn’t work, use the following command instead, just add — binary
+</aside>
+
 ```
 pip install psycopg2-binary
 ```
-</aside>
