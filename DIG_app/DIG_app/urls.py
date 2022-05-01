@@ -19,4 +19,5 @@ from django.urls import path, include
 urlpatterns = [
     path('', include('main.urls')), # when anybody is in the page without anything else it points now to main.urls
     path('admin/', admin.site.urls),
+    #path( 'tinymce/', include('tinymce.urls') ),
 ]
