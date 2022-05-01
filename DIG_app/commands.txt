@@ -26,6 +26,7 @@ d = datetime.time(10, 33, 45)
 
 7. Creating instacnes, for example, Establecmiento:
 new_est = Establecimiento(nombre="Nicanor", Cierre=datetime.time(20, 0, 0), ciudad="Bogotá", tipo="Café", direccion="Calle 29a # 34a - 33", capacidad=56, calidad_internet=3.9, calificacion=4.2, descripcion="Cerca a la Universidad Nacional, es un ambiente acogedor, donde puede encontrar platos especiales, tomarse un buen café o disfrutar de un buen vino; no es solo un alimento para el cuerpo, también para el espíritu. Es un lugar para disfrutar sin afanes, para una buena lectura, para conversar en un ambiente en el que la buena selección de música acompaña aquel buen café.")
+new_est.save()
 
 8. For tinymce
 Include the path in Global project urls.py: 
