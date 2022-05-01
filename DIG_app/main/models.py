@@ -6,7 +6,7 @@ import datetime
 
 # Create your models here.
 class Usuario(models.Model):
-    nombre = models.CharField(max_length=100)
+    nombre = models.CharField(max_length=50)
     puntaje = models.DecimalField(max_digits=2, decimal_places=1)
     correo = models.CharField(max_length=100)
     ciudad = models.CharField(max_length=30)
