@@ -1,0 +1,66 @@
+1. Project creation.
+django-admin startproject DIG_app
+
+2. Start first app
+python3 manage.py startapp <app_name>
+
+3. Run server
+python manage.py runserver
+
+4. Assign paths to chekc everything is working.
+
+5. Before making the models we need to install the app:
+    Go for project directory: settings.py -> INSTALLED_APPS ->
+    'main.apps.MainConfig',
+
+    <name of app> . apps . <name of app with Upper Case of first letter>Config
+
+6. Date Time and Time modules
+# importing datetime module
+import datetime
+  
+# creating an instance of 
+# datetime.time
+# time(hour = 0, minute = 0, second = 0)
+d = datetime.time(10, 33, 45)
+
+7. Creating instacnes, for example, Establecmiento:
+new_est = Establecimiento(nombre="Nicanor", Cierre=datetime.time(20, 0, 0), ciudad="Bogotá", tipo="Café", direccion="Calle 29a # 34a - 33", capacidad=56, calidad_internet=3.9, calificacion=4.2, descripcion="Cerca a la Universidad Nacional, es un ambiente acogedor, donde puede encontrar platos especiales, tomarse un buen café o disfrutar de un buen vino; no es solo un alimento para el cuerpo, también para el espíritu. Es un lugar para disfrutar sin afanes, para una buena lectura, para conversar en un ambiente en el que la buena selección de música acompaña aquel buen café.")
+
+8. For tinymce
+Include the path in Global project urls.py: 
+    path( 'tinymce/', include('tinymce.urls') ),
+
+Add to settings.py in global project:
+INSTALLED_APPS = [
+    'tinymce',
+
+Add settings to that widget, in the same settings.py
+TINYMCE_DEFAULT_CONFIG = {
+    'height': 360,
+    'width': 1120,
+    'cleanup_on_startup': True,
+    'custom_undo_redo_levels': 20,
+    'selector': 'textarea',
+    'theme': 'modern',
+    'plugins': '''
+            textcolor save link image media preview codesample contextmenu
+            table code lists fullscreen  insertdatetime  nonbreaking
+            contextmenu directionality searchreplace wordcount visualblocks
+            visualchars code fullscreen autolink lists  charmap print  hr
+            anchor pagebreak
+            ''',
+    'toolbar1': '''
+            fullscreen preview bold italic underline | fontselect,
+            fontsizeselect  | forecolor backcolor | alignleft alignright |
+            aligncenter alignjustify | indent outdent | bullist numlist table |
+            | link image media | codesample |
+            ''',
+    'toolbar2': '''
+            visualblocks visualchars |
+            charmap hr pagebreak nonbreaking anchor |  code |
+            ''',
+    'contextmenu': 'formats | link image',
+    'menubar': True,
+    'statusbar': True,
+}
