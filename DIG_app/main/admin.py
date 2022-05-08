@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import Establecimiento, Usuario
-from django.db import models
+from .models import Business, User
+#from django.db import models
 
 #Register your models here.
 # class EstablecimientoAdmin(admin.ModelAdmin):
@@ -10,6 +10,6 @@ from django.db import models
 #     ]
 
 
-admin.site.register(Usuario)
-admin.site.register(Establecimiento)
+admin.site.register(User)
+admin.site.register(Business)
 #admin.site.register(Establecimiento, EstablecimientoAdmin)
