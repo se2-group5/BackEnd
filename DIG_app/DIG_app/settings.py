@@ -57,10 +57,15 @@ ALLOWED_HOSTS = []
 #     'statusbar': True,
 # }
 
+# CUSTOM USER
+AUTH_USER_MODEL = 'main.User' # appname.ModelName
+swappable = 'AUTH_USER_MODEL'
+
 # Application definition
 
 INSTALLED_APPS = [
     'main.apps.MainConfig',
+    'django_extensions',
     #'tinymce',
     'django.contrib.admin',
     'django.contrib.auth',
