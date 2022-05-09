@@ -30,6 +30,7 @@ class User(AbstractUser):
     rating = models.DecimalField(max_digits=2, decimal_places=1, null=True, blank=True)
     telephone_number = models.CharField(max_length=15, null=True, blank=True)
 
+
     def __str__(self) -> str:
          return f'id: {self.id} {self.first_name} {self.email}'
 
