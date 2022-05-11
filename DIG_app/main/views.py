@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from .models import Business
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, logout, authenticate
+from django.contrib import messages
 
 from django.contrib.auth import get_user_model
 User = get_user_model()
@@ -14,20 +15,33 @@ def homepage(request):
                   context={ "businesses": Business.objects.all })
 
 def register(request):
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+    if request.method == "POST":
+        form = UserCreationForm(data=request.POST)
         if form.is_valid():
             user = form.save()
+            username = form.cleaned_data.get('username')
+            messages.success(request, f"New account created: {username}")
             login(request, user)
             return redirect("main:homepage")
+
         else:
-            for msg in form.error_messages: # Error handling from the form.
-                print(form.error_messages[msg])
+            for msg in form.error_messages:
+                messages.error(request, f"{msg}: {form.error_messages[msg]}")
+
+            return render(request = request,
+                            template_name = "main/register.html",
+                            context={"form":form})
 
     form = UserCreationForm
-    return render(request, 
-                  "main/register.html",
-                  context={"form": form})
+    return render(request = request,
+                  template_name = "main/register.html",
+                  context={"form":form})
+
+
+def logout_request(request):
+    logout(request)
+    messages.info(request, "Logged Out")
+    return redirect("main:homepage")
 
 
 def cities(request):
