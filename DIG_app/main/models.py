@@ -49,11 +49,17 @@ class Business(models.Model):
     internet_quality = models.DecimalField(max_digits=2, decimal_places=1)
     rating = models.DecimalField(max_digits=2, decimal_places=1)
     description = models.TextField()
-    telephone_number = models.CharField(max_length=15)
+    telephone_number = models.CharField(max_length=15, null=True)
 
 
     def __str__(self) -> str:
         return f'{self.id} {self.name} {self.type}'
+
+class OccupationStatus(models.Model):
+    status = models.CharField(max_length=20)
+
+    def __str__(self) -> str:
+        return f'{self.status}'
 
 class Consult(models.Model):
     date = models.DateTimeField(auto_now_add=True, auto_now=False) # Automatically add now as DateTime when created, but not when modified.
@@ -67,15 +73,21 @@ class Consult(models.Model):
 class Report(models.Model):
     date = models.DateTimeField(auto_now_add=True, auto_now=False) # Automatically add now as DateTime when created, but not when modified.
     user_id = models.ForeignKey(User, default=1, verbose_name='UserID', on_delete=models.SET_DEFAULT)
-    business_id = models.ForeignKey(Business, default=1, verbose_name='UserID', on_delete=models.SET_DEFAULT)
-    occupation_status = models.CharField(max_length=20)
+    business_id = models.ForeignKey(Business, default=1, verbose_name='BusinessID', on_delete=models.SET_DEFAULT)
+    occupation_status = models.ForeignKey(OccupationStatus, default=1, verbose_name='Ocupation', on_delete=models.SET_DEFAULT)
     internet_status = models.DecimalField(max_digits=2, decimal_places=1) # make a difference from internet_quality
     rating_business = models.DecimalField(max_digits=2, decimal_places=1) # Should go from 1 to 5
-    report_support = models.IntegerField()
-    comments = models.TextField()
+    report_support = models.IntegerField(null=True, blank=True)
+    comments = models.TextField(null=True)
+
+    def __str__(self) -> str:
+         return f'Report made by {self.user_id} on {self.date}'
 
 class Favorite(models.Model):
     user_id = models.ForeignKey(User, default=1, verbose_name='UserID', on_delete=models.SET_DEFAULT)
-    business_id = models.ForeignKey(Business, default=1, verbose_name='UserID', on_delete=models.SET_DEFAULT)
+    business_id = models.ForeignKey(Business, default=1, verbose_name='BusinessID', on_delete=models.SET_DEFAULT)
+
+    def __str__(self) -> str:
+         return f'{self.user_id} tiene por favorito a {self.business_id}'
     
     
