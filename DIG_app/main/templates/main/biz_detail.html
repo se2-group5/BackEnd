@@ -1,0 +1,58 @@
+{% extends 'main/header.html' %}
+
+{% block content %}
+    <script>M.toast({html: "{{business.name}}!", classes: 'green', displayLength:2000});</script>
+    <div class="container">
+        
+        <div class="col s12 m6 l4">
+
+            <div> 
+                <h1>{{business.name}}<h1>
+            </div>
+                    <h6 style="font-family:Monaco"">{{ business.city }}</h6>
+            <div class="content">
+                <p>{{ business.description }}</p>
+            </div>
+
+            <br>
+            <br>
+
+            <div class="row">
+
+                <div class="col s4">
+                    <i class="medium material-icons">insert_chart</i>
+                    <h5 style="font-size:1.5rem">Calificación</h5>
+                    <div class="col s5">
+                        <div class="card-panel teal">
+                            <span class="white-text" style="font-size:1.4rem">{{business.rating}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s4">
+                    <i class="medium material-icons">network_check</i>
+                    <h5 style="font-size:1.5rem">Internet</h5>
+                    <div class="col s5">
+                        <div class="card-panel teal">
+                            <span class="white-text" style="font-size:1.4rem">{{business.internet_quality}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s4">
+                    <i class="medium material-icons">people</i>
+                    <h5 style="font-size:1.5rem">Capacidad</h5>
+                    <div class="col s5">
+                        <div class="card-panel teal">
+                            <span class="white-text" style="font-size:1.4rem">{{business.capacity}}</span>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+                
+                
+            </a>
+
+        </div>
+        
+    </div>
+{% endblock %}

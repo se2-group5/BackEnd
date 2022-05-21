@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
@@ -65,6 +65,13 @@ def login_request(request):
     return render(request, 
                  "main/login.html", 
                  {"form": form})
+
+def business_profile(request, business_id):
+    business = get_object_or_404(Business, pk=business_id)
+    #return HttpResponse("Currently you are in  <strong>A BUSINESS</strong>")
+    return render(request, "main/biz_detail.html", {
+        "business" : business
+    })
 
 def cities(request):
     return HttpResponse("Currently you are in  <strong>CITY</strong>, to change click the button below.")

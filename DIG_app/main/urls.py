@@ -24,5 +24,6 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path('logout/', views.logout_request, name='logout'),
     path('login/', views.login_request, name='login'),
-    path('cities/', views.cities, name='cities'),
+    path('<int:business_id>/biz_profile', views.business_profile, name='biz_profile'),
+    path('cities/', views.cities, name='cities'), # test
 ]
