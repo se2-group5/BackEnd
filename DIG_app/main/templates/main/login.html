@@ -1,0 +1,14 @@
+{% extends 'main/header.html' %}
+
+{% block content %}
+    <div class='container'>
+        <form method="POST">
+
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn" type="submit"> Login </button>
+        </form>
+
+        If you don't have an account, <a href="/register"><strong>register</strong></a> for one.
+    </div>
+{% endblock %}
