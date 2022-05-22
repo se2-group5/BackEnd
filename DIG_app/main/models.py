@@ -62,7 +62,7 @@ class Business(models.Model):
     internet_quality = models.DecimalField(max_digits=2, decimal_places=1)
     rating = models.DecimalField(max_digits=2, decimal_places=1)
     description = models.TextField()
-    telephone_number = models.CharField(max_length=15, null=True)
+    telephone_number = models.CharField(max_length=15, null=True, blank=True)
 
 
     def __str__(self) -> str:
