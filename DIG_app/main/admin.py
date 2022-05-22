@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Business, Consult, User, Report, Favorite, OccupationStatus
+from .models import Business, Consult, User, Report, Favorite, OccupationStatus, City
 #from django.db import models
 
 #Register your models here.
@@ -21,4 +21,5 @@ admin.site.register(Consult)
 admin.site.register(Report)
 admin.site.register(Favorite)
 admin.site.register(OccupationStatus)
+admin.site.register(City)
 #admin.site.register(Establecimiento, EstablecimientoAdmin)
