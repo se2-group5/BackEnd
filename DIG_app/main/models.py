@@ -36,7 +36,7 @@ class City(models.Model):
 class User(AbstractUser):
     username = models.CharField(max_length=30, unique=True)
     email = models.EmailField(max_length=254,unique=True, null=True, blank=True)
-    avatar = models.ImageField(upload_to='thumbpath', blank=True) # Uses Pillow Lib, see requirements.
+    avatar = models.ImageField(upload_to='main/images/user_profile', blank=True) # Uses Pillow Lib, see requirements.
     
     # more specific to business logic
     city = models.ForeignKey(City, default=1, verbose_name='City', on_delete=models.SET_DEFAULT)
@@ -63,7 +63,7 @@ class Business(models.Model):
     rating = models.DecimalField(max_digits=2, decimal_places=1)
     description = models.TextField()
     telephone_number = models.CharField(max_length=15, null=True, blank=True)
-
+    cover_picture = models.ImageField(upload_to='main/images/biz_profile', blank=True) # Uses Pillow Lib, see requirements.
 
     def __str__(self) -> str:
         return f'{self.id} {self.name} {self.type}'
