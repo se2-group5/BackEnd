@@ -15,6 +15,7 @@ def homepage(request):
                   template_name='main/index.html',
                   context={ "businesses": Business.objects.all })
 
+# USER VIEWS
 def register(request):
     if request.method == "POST":
         form = NewUserForm(data=request.POST)
@@ -66,6 +67,15 @@ def login_request(request):
                  "main/login.html", 
                  {"form": form})
 
+
+def user_profile(request, user_id):
+    user = get_object_or_404(User, pk=user_id)
+    #return HttpResponse("Currently you are in  <strong>A USER PROFILE ! ! !</strong>")
+    return render(request, "main/user_profile.html", {
+        "user" : user
+    })
+
+# BUSINESS VIEWS
 def business_profile(request, business_id):
     business = get_object_or_404(Business, pk=business_id)
     #return HttpResponse("Currently you are in  <strong>A BUSINESS</strong>")

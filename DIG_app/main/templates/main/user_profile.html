@@ -1,0 +1,76 @@
+{% extends 'main/header.html' %}
+
+
+{% block content %}
+    {% comment %} Profile Pictire and User name {% endcomment %}
+
+    <div class="container">
+        <div class="card">
+            <div class="card-image waves-effect waves-block waves-light">
+                {% load static %}
+                <img class="activator" src={% static "main/images/8.jpg"  %}>
+            </div>
+            <div class="card-content">
+                <span class="card-title activator grey-text text-darken-4"><i class="material-icons left">contacts</i> {{user.username}} <i class="material-icons right">more_vert</i></span>
+                <p>{{user.city}}</p>
+            </div>
+            <div class="card-reveal">
+                <span class="card-title grey-text text-darken-4"><h4>{{user.username}}</h4><i class="material-icons right">close</i></span>
+                <div class="col s10 m6 l8">
+                        <table class="striped">
+                        <tr>
+                            <th>Email</th>
+                            <td>{{user.email}}</td>
+                        </tr>
+                        <tr>
+                            <th>Ciudad</th>
+                            <td>{{user.city}}</td>
+                        </tr>
+                        <tr>
+                            <th>Teléfono</th>
+                            <td>{{user.telephone_number}}</td>
+                        </tr>
+                        </table>
+                </div>
+                
+                <!-- Reportes -->
+                <br>
+                <div class="divider"></div>
+                <h5 style="color:#e57373">Reportes</h5>
+                    {% for report in user.report_set.all %}
+                        <div class="section">
+                            
+                            <div class="row">
+                                <div class="col s1 ">
+                                    <div class="card-panel teal">
+                                        <span class="white-text" style="font-size:1.2rem">{{report.rating_business}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <h5>{{report.occupation_status}}</h5>
+
+                            <p>{{report.date}}</p>
+                            <p>{{report.rating_business}}</p>
+                            <p>{{report.comments}}</p>
+                        </div>
+                        <div class="divider"></div>
+                    {% endfor %}
+            </div>
+        </div>
+    </div>
+                
+    
+    
+    
+
+    <script>M.toast({html: "{{user.username}}!", classes: 'teal', displayLength:2000});</script>
+    
+    <!-- Contenido -->
+                
+                
+            
+            
+
+           
+
+{% endblock %}
