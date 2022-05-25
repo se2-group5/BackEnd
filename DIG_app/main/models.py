@@ -86,7 +86,7 @@ class Report(models.Model):
     internet_status = models.DecimalField(max_digits=2, decimal_places=1) # make a difference from internet_quality
     rating_business = models.DecimalField(max_digits=2, decimal_places=1) # Should go from 1 to 5
     report_support = models.IntegerField(null=True, blank=True)
-    comments = models.TextField(null=True)
+    comments = models.TextField(null=True, blank=True)
 
     def __str__(self) -> str:
          return f'Report made by {self.user_id} on {self.date}'
