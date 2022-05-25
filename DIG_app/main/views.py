@@ -70,9 +70,12 @@ def login_request(request):
 
 def user_profile(request, user_id):
     user = get_object_or_404(User, pk=user_id)
+    reports = list( user.report_set.all() )
+    number_reports = len(reports)
     #return HttpResponse("Currently you are in  <strong>A USER PROFILE ! ! !</strong>")
     return render(request, "main/user_profile.html", {
-        "user" : user
+        "user" : user,
+        "number_reports": number_reports
     })
 
 # BUSINESS VIEWS
