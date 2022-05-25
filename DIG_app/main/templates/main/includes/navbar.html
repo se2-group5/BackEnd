@@ -5,7 +5,7 @@
         <li><a href="/">Home</a></li>
         <li><a href="https://www.google.com/maps/">Map</a></li>
         {% if user.is_authenticated %}
-             <li><a href="/account">{{user.username|title}}</a></li>
+             <li><a href="{% url 'main:user_profile' user.id %}">{{user.username|title}}</a></li>
              <li><a href="/logout">Logout</a></li>
         {% else %}
             <li><a href="/login">Login</a></li>
