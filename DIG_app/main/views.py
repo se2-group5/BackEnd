@@ -86,5 +86,23 @@ def business_profile(request, business_id):
         "business" : business
     })
 
+def support_report(request, business_id):
+    business = get_object_or_404(Business, pk=business_id) # Question.objects.get(pk=1) # Handle error for selected question
+    
+    try: # handle error for selected choice
+        selected_report = business.report_set.get(pk=request.POST["button_support"]) # Rescata la opción que está en "value" del HTML llamado "choice" que es el id del objeto de tipo 'Choice'.
+        # En el form la clave es: name='button_support' value={{report.id}}
+    except(KeyError, Report.DoesNotExist):
+        return render(request, "polls/detail.html", {
+            "business": business,
+            "error_message": "No elegiste una respuesta"
+        })
+    else:
+        selected_choice.votes += 1
+        selected_choice.save()
+        return HttpResponseRedirect( reverse("polls:results", args=(question.id, ) ) )
+
+
+
 def cities(request):
     return HttpResponse("Currently you are in  <strong>CITY</strong>, to change click the button below.")

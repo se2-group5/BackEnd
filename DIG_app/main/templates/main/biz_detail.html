@@ -79,17 +79,29 @@
                     <div class="section">
                         
                         <div class="row">
+
                             <div class="col s1 ">
                                 <div class="card-panel teal">
                                     <span class="white-text" style="font-size:1.2rem">{{report.rating_business}}</span>
                                 </div>
                             </div>
+                            
+                            {% if user.is_authenticated %}
+                                <form action="{% url 'main:support_report' business.id %}" method="post">
+                                    {% csrf_token %}
+                                    <button class="waves-effect waves-light btn" type="submit" name='button_support' value={{report.id}} >Support</button>
+                                 </form>
+                            {% else %}
+                                <div class="col s6 offset-s6"><a class="btn disabled">Support</a></div>
+                            {% endif %}
+                            
+
                         </div>
                         <h5>{{report.occupation_status}}</h5>
 
                         <p>{{report.date}}</p>
-                        <p>{{report.rating_business}}</p>
                         <p>{{report.comments}}</p>
+                        <span style="font-family:Avenir"><i class="tiny material-icons">stars</i> {{report.report_support}}</span>
                     </div>
                     <div class="divider"></div>
                 {% endfor %}
