@@ -11,6 +11,11 @@
     </div>
 
     <script>M.toast({html: "{{business.name}}!", classes: 'green', displayLength:2000});</script>
+
+    {% if error_message %}
+            <p> <strong></strong> </p>
+            <script>M.toast({html: "{{ error_message }}!", classes: 'red', displayLength:2000});</script>
+    {% endif %}
     
     <!-- Contenido -->
     <div class='container'>
@@ -86,15 +91,16 @@
                                 </div>
                             </div>
                             
+                            <div class="col s6 offset-s6">
                             {% if user.is_authenticated %}
                                 <form action="{% url 'main:support_report' business.id %}" method="post">
                                     {% csrf_token %}
                                     <button class="waves-effect waves-light btn" type="submit" name='button_support' value={{report.id}} >Support</button>
                                  </form>
                             {% else %}
-                                <div class="col s6 offset-s6"><a class="btn disabled">Support</a></div>
+                                <a class="btn disabled">Support</a>
                             {% endif %}
-                            
+                            </div>
 
                         </div>
                         <h5>{{report.occupation_status}}</h5>
