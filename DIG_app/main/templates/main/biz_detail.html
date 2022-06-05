@@ -37,7 +37,7 @@
                 <div class="container">
                     {% load static %}
                     <img class="materialboxed" width="650" src={% static business.cover_picture %}>
-            </div>
+                </div>
 
             <br>
             <br>
@@ -79,7 +79,17 @@
             <!-- Reportes -->
             <br>
             <div class="divider"></div>
-            <h4 style="color:#e57373">Reportes</h4>
+
+            <div class="row">
+                <div class="col s1">
+                    <h4 style="color:#e57373">Reportes</h4>
+                </div>      
+                <div class="col s6 offset-s1">      
+                    <a class="btn-floating btn-large waves-effect waves-light teal"><i class="material-icons">add</i></a>
+                    <span class="flow-text" style="color:#455a64; font-family:Avenir;">Add Report</span>
+                </div>
+            </div>
+
                 {% for report in business.report_set.all %}
                     <div class="section">
                         
@@ -90,13 +100,14 @@
                                     <span class="white-text" style="font-size:1.2rem">{{report.rating_business}}</span>
                                 </div>
                             </div>
+
                             
                             <div class="col s6 offset-s6">
                             {% if user.is_authenticated %}
                                 <form action="{% url 'main:support_report' business.id %}" method="post">
                                     {% csrf_token %}
                                     <button class="waves-effect waves-light btn" type="submit" name='button_support' value={{report.id}} >Support</button>
-                                 </form>
+                                </form>
                             {% else %}
                                 <a class="btn disabled">Support</a>
                             {% endif %}

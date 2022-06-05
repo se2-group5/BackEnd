@@ -42,22 +42,22 @@
     
     <div class='container'>
         <div class="row">
-        {% for bz in businesses %}
-            <div class="col s6 m7">
-            <a href="{% url 'main:biz_profile' bz.id %}", style="color:#000">
-                <div class="card hoverable">
-                <div class="card-image">
-                    {% load static %}
-                    <img src={% static bz.cover_picture %} alt={{bz.name}}>
-                    <span class="card-title" style="font-size:2.4rem">{{bz.name}}</span>
+            {% for bz in businesses %}
+                <div class="col s6 m7">
+                    <a href="{% url 'main:biz_profile' bz.id %}", style="color:#000">
+                        <div class="card hoverable">
+                            <div class="card-image">
+                                {% load static %}
+                                <img src={% static bz.cover_picture %} alt={{bz.name}}>
+                                <span class="card-title" style="font-size:2.4rem">{{bz.name}}</span>
+                            </div>
+                            <div class="card-content" style="font-family:Avenir">
+                                <p style="font-size:1.2rem;">{{ bz.city }}</p>
+                            </div>
+                        
+                        </div>
+                    </a>
                 </div>
-                <div class="card-content" style="font-family:Avenir">
-                    <p style="font-size:1.2rem;">{{ bz.city }}</p>
-                </div>
-                
-                </div>
-            </a>
-        </div>
             {% endfor %}
         </div>
     </div>
