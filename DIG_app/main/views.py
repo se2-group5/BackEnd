@@ -5,7 +5,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 from django.urls import reverse
 from .models import Business, Report
-from .forms import NewUserForm
+from .forms import NewUserForm, ReportForm
 
 from django.contrib.auth import get_user_model
 User = get_user_model()
@@ -91,7 +91,7 @@ def support_report(request, business_id):
     business = get_object_or_404(Business, pk=business_id) # Question.objects.get(pk=1) # Handle error for selected question
     
     try: # handle error for selected choice
-        selected_report = business.report_set.get(pk=request.POST["button_support"]) # Rescata la opción que está en "value" del HTML llamado "choice" que es el id del objeto de tipo 'Choice'.
+        selected_report = business.report_set.get(pk=request.POST["button_support"]) # Rescata la opción que está en "value" del HTML llamado "button_support" que es el id del objeto de tipo 'Report'.
         # En el form la clave es: name='button_support' value={{report.id}}
     except(KeyError, Report.DoesNotExist):
         return render(request, "main/biz_profile.html", {
@@ -103,6 +103,22 @@ def support_report(request, business_id):
         selected_report.save()
         return HttpResponseRedirect( reverse("main:biz_profile", args=(business.id, ) ) )
 
+def make_report(request, business_id):
+    if request.method == "POST":
+        form = ReportForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect( reverse("main:biz_profile", args=(business_id, ) ) )
+        else:
+            messages.error(request, "Invalid form!")
+
+
+    form = ReportForm()
+    return render(request, "main/make_report.html", {
+        "form": form,
+        })
+    
+       
 # def add_favorite(request, business_id):
 #     business = get_object_or_404(Business, pk=business_id) # Question.objects.get(pk=1) # Handle error for selected question
     

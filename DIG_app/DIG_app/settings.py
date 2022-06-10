@@ -66,6 +66,7 @@ swappable = 'AUTH_USER_MODEL'
 INSTALLED_APPS = [
     'main.apps.MainConfig',
     'django_extensions',
+    'bootstrap4',
     #'tinymce',
     'django.contrib.admin',
     'django.contrib.auth',
