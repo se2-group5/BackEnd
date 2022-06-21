@@ -20,6 +20,9 @@ from main import views
 
 router = routers.DefaultRouter()
 router.register(r'businesses', views.BusinessView, 'business')
+router.register(r'users', views.UserViews, 'user')
+#router.register(r'^user/(?P<username>\w{0,50})/$', views., 'user')
+
 
 urlpatterns = [
     path('', include('main.urls')), # when anybody is in the page without anything else it points now to main.urls

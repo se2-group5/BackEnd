@@ -4,9 +4,9 @@ from .models import Business, User
 class BusinessSerializer(serializers.ModelSerializer):
     class Meta:
         model = Business
-        fields = ('id', 'name', 'city', 'capacity', 'description')
+        fields = ('id', 'name', 'city', 'capacity', 'description', 'cover_picture')
 
-class TodoSerializer(serializers.ModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'title', 'description', 'completed')
+        fields = ('id', 'username', 'email', 'password')

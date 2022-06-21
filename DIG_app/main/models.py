@@ -63,7 +63,7 @@ class Business(models.Model):
     rating = models.DecimalField(max_digits=2, decimal_places=1)
     description = models.TextField()
     telephone_number = models.CharField(max_length=15, null=True, blank=True)
-    cover_picture = models.ImageField(upload_to='main/images/biz_profile', blank=True) # Uses Pillow Lib, see requirements.
+    cover_picture = models.CharField(max_length=300, null=True, blank=True)
 
     def __str__(self) -> str:
         return f'{self.id} {self.name} {self.type}'
