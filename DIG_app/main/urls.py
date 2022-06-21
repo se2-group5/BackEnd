@@ -28,5 +28,6 @@ urlpatterns = [
     path('login/', views.login_request, name='login'),
     path('<int:business_id>/biz_profile', views.business_profile, name='biz_profile'),
     path('<int:business_id>/biz_profile/support_report', views.support_report, name='support_report'),
+    path('<int:business_id>/biz_profile/make_report', views.make_report, name='make_report'),
     path('cities/', views.cities, name='cities'), # test
 ]

@@ -68,6 +68,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'corsheaders',
     'rest_framework',
+    'bootstrap4',
     #'tinymce',
     'django.contrib.admin',
     'django.contrib.auth',

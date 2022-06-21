@@ -1,0 +1,37 @@
+{% extends 'main/header.html' %}
+
+{% block content %}
+    {% load bootstrap4 %}
+
+    {# Load CSS and JavaScript #}
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
+    
+    {# Display django.contrib.messages as Bootstrap alerts #}
+    {% bootstrap_messages %}
+    <div class="container"  style="width:100%;" dir="rtl">
+        <div class="col s3 right">
+        </div>
+        <div class="col s6 right" dir="rtl">
+            <div class="container">
+                <div class="row"><br></div>
+                    <h4 class="right">Reportar</h4>
+                <div class="row"><br></div>
+                <form method="post" >
+                    {% csrf_token %}
+    
+                            {% bootstrap_form form %}
+    
+                    <div class="col center">
+                        {% buttons %}
+                            <button class="btn-large waves-effect waves-light blue darken-1" type="submit" name="action">Reportar
+                              <i class="material-icons right">send</i>
+                            </button>
+                         {% endbuttons %}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
