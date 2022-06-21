@@ -1,8 +1,27 @@
-{% extends 'main/header.html' %}
+{% extends 'main/header.html' %} {% block content %} {% comment %} Profile
+Pictire and User name {% endcomment %}
 
+<div class="container">
+  <div class="card">
+    {% comment "Card cover" %}{% endcomment %}
+    <div class="card-image waves-effect waves-block waves-light">
+      {% load static %} <img class="activator" src={% static "main\images\7.jpg"
+      %}>
+    </div>
+    <div class="card-content">
+      <span class="card-title activator grey-text text-darken-4"
+        ><i class="material-icons left">contacts</i> {{user.username}}
+        <i class="material-icons right">more_vert</i></span
+      >
+      <p>{{user.city}}</p>
+    </div>
 
-{% block content %}
-    {% comment %} Profile Pictire and User name {% endcomment %}
+    {% comment "Card reveal" %}{% endcomment %}
+    <div class="card-reveal">
+      <span class="card-title grey-text text-darken-4"
+        ><h4>{{user.username}}</h4>
+        <i class="material-icons right">close</i></span
+      >
 
     <div class="container">
         <div class="card">
@@ -15,84 +34,79 @@
                 <span class="card-title activator grey-text text-darken-4"><i class="material-icons left">contacts</i> {{user.username}} <i class="material-icons right">more_vert</i></span>
                 <p>{{user.city}}</p>
             </div>
+      <ul class="collection">
+        <li class="collection-item avatar">
+          <i class="material-icons circle teal">insert_emoticon</i>
+          <span class="title">{{user.first_name}} {{user.last_name}}</span>
+          <p>
+            {{user.city}} <br />
+            {{user.email}}
+          </p>
+          <a href="#!" class="secondary-content"
+            ><i class="material-icons">grade</i></a
+          >
+        </li>
+      </ul>
 
-            {% comment "Card reveal" %}{% endcomment %}
-            <div class="card-reveal">
+      <div class="col s10 m6 l8">
+        <div class="divider"></div>
 
-                <span class="card-title grey-text text-darken-4"><h4>{{user.username}}</h4><i class="material-icons right">close</i></span>
-               
-                <ul class="collection">
-                    <li class="collection-item avatar">
-                        <i class="material-icons circle teal">insert_emoticon</i>
-                        <span class="title">{{user.first_name}} {{user.last_name}}</span>
-                        <p>{{user.city}} <br>
-                        {{user.email}}
-                        </p>
-                        <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-                    </li>
-                </ul>
-                
-                <div class="col s10 m6 l8">
-                    
-                    <div class="divider"></div>
-
-                    <div class="section">
-                        <h5>Fecha de Registro</h5>
-                        <span class="grey-text text-darken-4">{{user.date_joined}}</span>
-                    </div>
-                    <div class="divider"></div>
-                    <br>
-                    <table class="striped">
-                    <tr>
-                        <th>Ultima Vez</th>
-                        <td>{{user.last_login}}</td>
-                    </tr>
-                    <tr>
-                        <th>Reportes</th>
-                        <td>{{number_reports}}</td>
-                    </tr>
-                    
-                    </table>
-                </div>
-                
-                <!-- Reportes -->
-                <br>
-                <div class="divider"></div>
-                <h5 style="color:#e57373; font-size:2rem">Reportes</h5>
-                    {% for report in user.report_set.all %}
-                        <div class="section">
-                            
-                            <div class="row">
-                                <div class="col s1 ">
-                                    <div class="card-panel teal">
-                                        <span class="white-text" style="font-size:1.2rem">{{report.rating_business}}</span>
-                                    </div>
-                                </div>
-                                <div class="col s6 offset-s6"><span class="flow-text" style="color:#455a64; font-family:Avenir";>{{report.business_id.name}}</span></div>
-                            </div>
-                            <h4>{{report.occupation_status}}</h4>
-
-                            <p>{{report.date}}</p>
-                            <p style="font-size:1.4rem">{{report.comments}}</p>
-                        </div>
-                        <div class="divider"></div>
-                    {% endfor %}
-            </div>
+        <div class="section">
+          <h5>Fecha de Registro</h5>
+          <span class="grey-text text-darken-4">{{user.date_joined}}</span>
         </div>
+        <div class="divider"></div>
+        <br />
+        <table class="striped">
+          <tr>
+            <th>Ultima Vez</th>
+            <td>{{user.last_login}}</td>
+          </tr>
+          <tr>
+            <th>Reportes</th>
+            <td>{{number_reports}}</td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- Reportes -->
+      <br />
+      <div class="divider"></div>
+      <h5 style="color: #e57373; font-size: 2rem">Reportes</h5>
+      {% for report in user.report_set.all %}
+      <div class="section">
+        <div class="row">
+          <div class="col s1">
+            <div class="card-panel teal">
+              <span class="white-text" style="font-size: 1.2rem"
+                >{{report.rating_business}}</span
+              >
+            </div>
+          </div>
+          <div class="col s6 offset-s6">
+            <span
+              class="flow-text"
+              style="color: #455a64; font-family: Avenir"
+              ;
+              >{{report.business_id.name}}</span
+            >
+          </div>
+        </div>
+        <h4>{{report.occupation_status}}</h4>
+
+        <p>{{report.date}}</p>
+        <p style="font-size: 1.4rem">{{report.comments}}</p>
+      </div>
+      <div class="divider"></div>
+      {% endfor %}
     </div>
-                
-    
-    
-    
+  </div>
+</div>
 
-    <script>M.toast({html: "{{user.username}}!", classes: 'teal', displayLength:2000});</script>
-    
-    <!-- Contenido -->
-                
-                
-            
-            
+<script>
+  M.toast({ html: "{{user.username}}!", classes: "teal", displayLength: 2000 });
+</script>
 
-           
+<!-- Contenido -->
 
 {% endblock %}
