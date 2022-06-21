@@ -16,3 +16,5 @@ class NewUserForm(UserCreationForm):
         if commit:
             user.save() # then we commit in DB
         return user
+
+
