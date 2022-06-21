@@ -18,6 +18,7 @@ class NewUserForm(UserCreationForm):
             user.save() # then we commit in DB
         return user
 
+
 class ReportForm(forms.ModelForm):
     occupation_status = forms.ModelChoiceField(queryset=OccupationStatus.objects.all(),
                                     to_field_name="status",

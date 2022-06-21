@@ -5,16 +5,34 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 from django.urls import reverse
 from .models import Business, Report
+from .forms import NewUserForm
+from rest_framework import viewsets
+from .serializers import BusinessSerializer, UserSerializer
 from .forms import NewUserForm, ReportForm
 
 from django.contrib.auth import get_user_model
 User = get_user_model()
+
+class BusinessView(viewsets.ModelViewSet):
+    serializer_class = BusinessSerializer
+    queryset = Business.objects.all()
+
+class UserViews(viewsets.ModelViewSet):
+    serializer_class = UserSerializer
+    queryset = User.objects.all()
+
+def login_user(request):
+    email = request.GET['email']
+    password = request.GET['username']
+
+    user = User.objects.get(email=email)
 
 # Create your views here.
 def homepage(request):
     return render(request=request, 
                   template_name='main/index.html',
                   context={ "businesses": Business.objects.all })
+
 
 # USER VIEWS
 def register(request):

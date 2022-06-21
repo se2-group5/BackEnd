@@ -23,6 +23,17 @@ Pictire and User name {% endcomment %}
         <i class="material-icons right">close</i></span
       >
 
+    <div class="container">
+        <div class="card">
+            {% comment "Card cover" %}{% endcomment %}
+            <div class="card-image waves-effect waves-block waves-light">
+                {% load static %}
+                <img class="activator" src={% static "main/images/default_profile2.jpg"  %}>
+            </div>
+            <div class="card-content">
+                <span class="card-title activator grey-text text-darken-4"><i class="material-icons left">contacts</i> {{user.username}} <i class="material-icons right">more_vert</i></span>
+                <p>{{user.city}}</p>
+            </div>
       <ul class="collection">
         <li class="collection-item avatar">
           <i class="material-icons circle teal">insert_emoticon</i>
