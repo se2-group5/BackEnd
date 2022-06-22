@@ -7,6 +7,7 @@ from django.urls import reverse
 from .models import Business, Report
 from .forms import NewUserForm
 from rest_framework import viewsets
+from rest_framework.decorators import action    
 from .serializers import BusinessSerializer, UserSerializer
 from .forms import NewUserForm, ReportForm
 
@@ -20,6 +21,10 @@ class BusinessView(viewsets.ModelViewSet):
 class UserViews(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     queryset = User.objects.all()
+
+    @action(methods=['get'], detail=True,url_path='login', url_name='login')
+    def login(self, request):
+        return []
 
 def login_user(request):
     email = request.GET['email']
