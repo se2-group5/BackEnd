@@ -1,22 +1,25 @@
 from .models import User
 from rest_framework import viewsets, response, status
+from rest_framework.permissions import IsAuthenticated
+from rest_framework import filters
 from .serializers import UserSerializer 
 
-
 class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all()
+    http_method_names = ['get']
     serializer_class = UserSerializer
+    permission_classes = (IsAuthenticated,)
+    filter_backends = [filters.OrderingFilter]
+    ordering_fields = ['updated']
+    ordering = ['-updated']
 
-    def create(self, request, *args, **kwargs):
-        serializer = UserSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        user = serializer.save()
+    def get_queryset(self):
+        if self.request.user.is_superuser:
+            return User.objects.all()
 
-        print('***************')
-        print(request.data)
-        print('***************')
-        user.set_password(serializer.validated_data.get('password'))
-        user.save()
-        headers = self.get_success_headers(serializer.data)
+    def get_object(self):
+        lookup_field_value = self.kwargs[self.lookup_field]
 
-        return response.Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+        obj = User.objects.get(lookup_field_value)
+        self.check_object_permissions(self.request, obj)
+
+        return obj
