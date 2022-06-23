@@ -16,11 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
+from main.viewsets import UserViewSet
 from main import views
 
 router = routers.DefaultRouter()
 router.register(r'businesses', views.BusinessView, 'business')
-router.register(r'users', views.UserViews, 'user')
+router.register(r'users', UserViewSet)
+#router.register(r'users', views.UserViews, 'user')
 #router.register(r'^user/(?P<username>\w{0,50})/$', views., 'user')
 
 
