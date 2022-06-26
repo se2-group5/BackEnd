@@ -9,7 +9,7 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
-    @action(methods=['get'], detail=True,url_path='login', url_name='login')
+    @action(methods=['get'], detail=True, url_path='login', url_name='login')
     def login(self, request, *args, **kwargs):
         
         email = request.query_params.get('email');

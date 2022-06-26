@@ -21,9 +21,12 @@ from main import views
 
 router = routers.DefaultRouter()
 router.register(r'businesses', views.BusinessView, 'business')
+router.register(r'cities', views.CityView, 'city')
+router.register(r'consults', views.ConsultView, 'consult')
+router.register(r'reports', views.ReportView, 'report')
+router.register(r'favorites', views.FavoriteView, 'favorite')
 router.register(r'users', UserViewSet)
-#router.register(r'users', views.UserViews, 'user')
-#router.register(r'^user/(?P<username>\w{0,50})/$', views., 'user')
+
 
 
 urlpatterns = [

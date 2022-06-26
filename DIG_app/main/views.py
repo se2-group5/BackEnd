@@ -4,20 +4,39 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 from django.urls import reverse
-from .models import Business, Report
+from .models import *
 from .forms import NewUserForm
 from rest_framework import viewsets
 from rest_framework.decorators import action    
-from .serializers import BusinessSerializer, UserSerializer
+from .serializers import *
 from .forms import NewUserForm, ReportForm
-
 from django.contrib.auth import get_user_model
+
 User = get_user_model()
+
+# API
 
 class BusinessView(viewsets.ModelViewSet):
     serializer_class = BusinessSerializer
     queryset = Business.objects.all()
 
+class CityView(viewsets.ModelViewSet):
+    serializer_class = CitySerializer
+    queryset = City.objects.all()
+
+class ConsultView(viewsets.ModelViewSet):
+    serializer_class = ConsultSerializer
+    queryset = Consult.objects.all()
+
+class ReportView(viewsets.ModelViewSet):
+    serializer_class = ReportSerializer
+    queryset = Report.objects.all()
+
+class FavoriteView(viewsets.ModelViewSet):
+    serializer_class = FavoriteSerializer
+    queryset = Favorite.objects.all()
+
+#  Not using currently
 class UserViews(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     queryset = User.objects.all()
@@ -25,6 +44,8 @@ class UserViews(viewsets.ModelViewSet):
     @action(methods=['get'], detail=True,url_path='login', url_name='login')
     def login(self, request):
         return []
+
+#######
 
 def login_user(request):
     email = request.GET['email']
