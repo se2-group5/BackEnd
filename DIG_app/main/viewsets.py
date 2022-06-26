@@ -6,16 +6,8 @@ from rest_framework.decorators import action
 from .serializers import UserSerializer 
 
 class UserViewSet(viewsets.ModelViewSet):
-    http_method_names = ['get']
+    queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = (IsAuthenticated,)
-    filter_backends = [filters.OrderingFilter]
-    ordering_fields = ['updated']
-    ordering = ['-updated']
-
-    def get_queryset(self):
-        if self.request.user.is_superuser:
-            return User.objects.all()
 
     @action(methods=['get'], detail=True,url_path='login', url_name='login')
     def login(self, request, *args, **kwargs):
