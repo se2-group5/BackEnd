@@ -29,6 +29,7 @@ class ReportSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         rep = super(ReportSerializer, self).to_representation(instance)
         rep['user_id'] = instance.user_id.username
+        rep['occupation_status'] = instance.occupation_status.status
         return rep
 
 class FavoriteSerializer(serializers.ModelSerializer):
