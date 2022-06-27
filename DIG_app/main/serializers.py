@@ -25,6 +25,11 @@ class ReportSerializer(serializers.ModelSerializer):
     class Meta:
         model = Report
         fields = '__all__'
+    
+    def to_representation(self, instance):
+        rep = super(ReportSerializer, self).to_representation(instance)
+        rep['user_id'] = instance.user_id.username
+        return rep
 
 class FavoriteSerializer(serializers.ModelSerializer):
     class Meta:
