@@ -1,1 +1,1 @@
-web: gunicorn DIG_app.wsgi
+web: gunicorn DIG_app.wsgi --log-file -
