@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from genericpath import exists
 from pathlib import Path
+import django_heroku
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -28,6 +29,9 @@ SECRET_KEY = 'django-insecure-$t&@qd88w5pm*26hl0wcx69&+(@zcs#qfi#1sx*dp$sn1&z@65
 DEBUG = False
 
 ALLOWED_HOSTS = ['dig-app-backend.herokuapp.com']
+JWT_SECRET_HEY = os.environ.get('JWT_SECRET_KEY')
+CORS_ORIGIN_ALLOW_ALL = True
+COR_ALLOW_CREDENTIALS = True
 
 # Setting for Tinymce4
 # TINYMCE_DEFAULT_CONFIG = {
@@ -193,3 +197,7 @@ REST_FRAMEWORK = {
     #     'rest_framework.renderers.JSONRenderer',
     # )
 }
+
+# Configure Django App for Heroku.
+
+django_heroku.settings(locals())
