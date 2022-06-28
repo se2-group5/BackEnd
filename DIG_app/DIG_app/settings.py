@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-$t&@qd88w5pm*26hl0wcx69&+(@zcs#qfi#1sx*dp$sn1&z@65
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["https://dig-app-backend.herokuapp.com/api/"]
+ALLOWED_HOSTS = ["https://dig-app-backend.herokuapp.com/"]
 
 # Setting for Tinymce4
 # TINYMCE_DEFAULT_CONFIG = {
