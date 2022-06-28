@@ -115,7 +115,7 @@ WSGI_APPLICATION = 'DIG_app.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'DIG_data', 
+        'NAME': 'dcc950nd6es9jm', 
         'HOST': 'ec2-34-200-35-222.compute-1.amazonaws.com',
         'USER': 'zdcmqaebnjiwon', 
         'PASSWORD': '567155a8e239efcb6c6b0f76f0650c27c88161682924bce18245fc4c4b0cd0e7', 
