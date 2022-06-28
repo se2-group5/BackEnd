@@ -7,10 +7,14 @@ django-bootstrap-v5==1.0.11
 django-bootstrap4==22.1
 django-cors-headers==3.13.0
 django-extensions==3.1.5
+<<<<<<< HEAD
 django-heroku==0.3.1
 djangorestframework==3.13.1
 djangorestframework-simplejwt==5.2.0
 gunicorn==20.1.0
+=======
+django-tinymce4-lite
+>>>>>>> ce1dd5812a3b00ea0df073ef6973494c86ac4d19
 jsmin==3.0.1
 Pillow==9.1.0
 psycopg2==2.9.3
@@ -22,4 +26,10 @@ pytz==2022.1
 soupsieve==2.3.2.post1
 sqlparse==0.4.2
 tzdata==2022.1
+<<<<<<< HEAD
 whitenoise==6.2.0
+=======
+django-cors-headers
+djangorestframework
+djangorestframework-simplejwt
+>>>>>>> ce1dd5812a3b00ea0df073ef6973494c86ac4d19
