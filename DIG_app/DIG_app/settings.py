@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-$t&@qd88w5pm*26hl0wcx69&+(@zcs#qfi#1sx*dp$sn1&z@65
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['dig-app-backend.herokuapp.com']
+ALLOWED_HOSTS = ['http://dig-app-backend.herokuapp.com']
 JWT_SECRET_HEY = os.environ.get('JWT_SECRET_KEY')
 CORS_ORIGIN_ALLOW_ALL = True
 COR_ALLOW_CREDENTIALS = True
