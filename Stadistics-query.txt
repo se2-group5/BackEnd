@@ -1,0 +1,1 @@
+Report.objects.filter(business_id__exact='#id').aggregate(Avg('rating_business'))
