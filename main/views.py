@@ -158,10 +158,9 @@ def make_report(request, business_id):
             form.save()
             try:
                 business = get_object_or_404(Business, pk=business_id)
-                business.rating= Cast(Report.objects.filter(business_id__exact=business_id).aggregate(Avg('rating_business')),
-                                      output_field=DecimalField(max_digits=2, decimal_places=1))
+                business.rating= round(Report.objects.filter(business_id__exact=business_id).aggregate(Avg('rating_business'))['rating_business__avg'],1)
                 messages.success(business.rating)
-                #business.save()
+                business.save()
             except Exception:
                 messages.error('Error during implementation')
             return HttpResponseRedirect( reverse("main:biz_profile", args=(business_id, ) ) )
