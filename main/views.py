@@ -11,8 +11,7 @@ from rest_framework.decorators import action
 from .serializers import *
 from .forms import NewUserForm, ReportForm
 from django.contrib.auth import get_user_model
-from django.db.models import Avg, DecimalField
-from django.db.models.functions import Cast
+from django.db.models import Avg
 
 
 User = get_user_model()
