@@ -16,3 +16,4 @@ django-bootstrap4
 gunicorn
 django-heroku
 whitenoise
+waitress
