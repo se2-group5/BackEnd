@@ -11,7 +11,9 @@ from rest_framework.decorators import action
 from .serializers import *
 from .forms import NewUserForm, ReportForm
 from django.contrib.auth import get_user_model
-from django.db.models import Avg
+from django.db.models import Avg, DecimalField
+from django.db.models.functions import Cast
+
 
 User = get_user_model()
 
@@ -156,7 +158,8 @@ def make_report(request, business_id):
             form.save()
             try:
                 business = get_object_or_404(Business, pk=business_id)
-                business.rating= Report.objects.filter(business_id__exact=business_id).aggregate(Avg('rating_business'))
+                business.rating= Cast(Report.objects.filter(business_id__exact=business_id).aggregate(Avg('rating_business')),
+                                      output_field=DecimalField(max_digits=2, decimal_places=1))
                 business.save()
             except Exception:
                 print('Error during implementation')
