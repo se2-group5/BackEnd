@@ -158,6 +158,7 @@ def make_report(request, business_id):
             form.save()
             business = get_object_or_404(Business, pk=business_id)
             business.rating= round(Report.objects.filter(business_id__exact=business_id).aggregate(Avg('rating_business'))['rating_business__avg'],1)
+            business.internet_quality= round(Report.objects.filter(business_id__exact=business_id).aggregate(Avg('internet_status'))['internet_status__avg'],1)
             business.save()
             return HttpResponseRedirect( reverse("main:biz_profile", args=(business_id, ) ) )
         else:
